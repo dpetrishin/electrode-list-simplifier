@@ -1,6 +1,6 @@
 # electrode-list-simplifier
 
-Solution contains 3 projects: 
+Solution contains 3 projects (.NET Core 3.1): 
 - Simple WPF UI
 - Library with the required logic
 - Unit tests for the library
