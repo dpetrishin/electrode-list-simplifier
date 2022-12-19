@@ -70,7 +70,6 @@ namespace ElectrodeListSimplifier.Library.Extensions
                         result.AddRange(list.Select(x => $"{name}{x}"));
                     }
                 }
-
             }
 
             return string.Join(", ", result);

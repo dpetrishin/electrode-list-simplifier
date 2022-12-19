@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ElectrodeListSimplifier.Library.Exceptions;
+using ElectrodeListSimplifier.Library.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,25 @@ namespace ElectrodeListSimplifier.App
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void SimplifyButton_Click(object sender, RoutedEventArgs e)
+        {
+
+            var electrodes = InputTextBox.Text.Trim().Split(',', StringSplitOptions.RemoveEmptyEntries);
+            try
+            {
+                var x = electrodes.ToList().ToSimplifiedString();
+                ResultTextBox.Text = x;
+            }
+            catch(ElectrodeNameFormatException ex)
+            {
+                MessageBox.Show(ex.UserMessage, "Wrong format", MessageBoxButton.OK);
+            }
+            catch (Exception )
+            {
+                MessageBox.Show("Unexpected error has been occured", "Exception", MessageBoxButton.OK);
+            }
         }
     }
 }

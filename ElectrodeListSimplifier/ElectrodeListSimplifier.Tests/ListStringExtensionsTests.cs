@@ -9,7 +9,8 @@ namespace ElectrodeListSimplifier.Tests
         [Theory]
         [InlineData("E1...E3, E5" ,"E1", "E2", "E3", "E5")]
         [InlineData("E1, E3", "E1", "E3")]
-        public void Test1(string expected, params string[] input)
+        [InlineData("E1...E4, E6, E7, E9, ICE1...ICE3", "E1", "E4", "E2", "E6", "E7", "E9", "ICE03", "ICE002", "ICE1", "E3")]
+        public void ElectrodeListSimplifiedSuccessfully(string expected, params string[] input)
         {
             var listInput = input.ToList();
             var actual = listInput.ToSimplifiedString();
