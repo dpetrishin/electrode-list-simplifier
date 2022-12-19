@@ -4,16 +4,21 @@ namespace ElectrodeListSimplifier.Library
 {
     public static class StringExtensions
     {
-        public static bool TrySplitNameAndNumber(this string input, out Tuple<string, int> result)
+        /// <summary>
+        /// String extension method to be able to split a string on two parts: text and numeral.
+        /// The sequence must be always only StringNumber.
+        /// </summary>
+        /// <param name="input">A string.</param>
+        /// <returns>Tuple pair with string and number.</returns>
+        public static Tuple<string, int> SplitNameAndNumber(this string input)
         {
-            result = null;
             if (input == null)
             {
-                return false;
+                throw new ArgumentException();
             }
             else if (input.Length < 1)
             {
-                return false;
+                throw new ArgumentException();
             }
             //else if (input[0].)
             //{
@@ -33,8 +38,7 @@ namespace ElectrodeListSimplifier.Library
                 }
             }
 
-            result = new Tuple<string, int>(name.Trim(), int.Parse(number));
-            return true;
+            return new Tuple<string, int>(name.Trim(), int.Parse(number));
         }
     }
 }

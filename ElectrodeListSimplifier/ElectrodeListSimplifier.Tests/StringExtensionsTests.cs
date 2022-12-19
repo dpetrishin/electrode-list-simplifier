@@ -16,9 +16,7 @@ namespace ElectrodeListSimplifier.Tests
         [InlineData("E01000", "E", 1000)]
         public void StringSplitSuccessfully(string input, string expectedName, int expectedNumber)
         {
-            bool actualResult = input.TrySplitNameAndNumber(out Tuple<string, int> actual);
-
-            Assert.True(actualResult);
+            var actual = input.SplitNameAndNumber();
             Assert.Equal(expectedName, actual.Item1);
             Assert.Equal(expectedNumber, actual.Item2);
         }
