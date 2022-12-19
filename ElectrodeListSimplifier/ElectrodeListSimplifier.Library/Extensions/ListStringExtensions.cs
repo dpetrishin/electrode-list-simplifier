@@ -12,7 +12,7 @@ namespace ElectrodeListSimplifier.Library.Extensions
             var result = new List<string>();
             var dictionary = new Dictionary<string, SortedSet<int>>();
 
-            foreach(var item in input)
+            foreach (var item in input)
             {
                 (string name, int number) = item.SplitNameAndNumber();
 
@@ -26,30 +26,51 @@ namespace ElectrodeListSimplifier.Library.Extensions
                 {
                     number
                 };
-                dictionary.Add(name, set);     
+
+                dictionary.Add(name, set);
             }
 
             foreach (KeyValuePair<string, SortedSet<int>> pair in dictionary)
             {
+                string name = pair.Key;
                 var list = new List<int>();
 
-                foreach(var number in pair.Value)
+                foreach (var number in pair.Value)
                 {
-                    if (list.Count != 3)
+                    if (!list.Any())
                     {
                         list.Add(number);
                     }
-                    else if (list.Count == 3 && list[0] == list[1] && list[1] == list[2])
+                    else if (list.Any() && list[^1] == number - 1)
                     {
-                        list[2] = number;
+                        list.Add(number);
+                    }
+                    else if (list.Count > 2)
+                    {
+                        result.Add($"{name}{list[0]}...{name}{list[^1]}");
+                        list.Clear();
+                        list.Add(number);
                     }
                     else
                     {
-
+                        result.AddRange(list.Select(x => $"{name}{x}"));
+                        list.Clear();
+                        list.Add(number);
                     }
                 }
 
-                
+                if (list.Any())
+                {
+                    if (list.Count > 2)
+                    {
+                        result.Add($"{name}{list[0]}...{name}{list[^1]}");
+                    }
+                    else
+                    {
+                        result.AddRange(list.Select(x => $"{name}{x}"));
+                    }
+                }
+
             }
 
             return string.Join(", ", result);

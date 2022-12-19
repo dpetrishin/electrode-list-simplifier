@@ -15,6 +15,7 @@ namespace ElectrodeListSimplifier.Tests
         [InlineData(" E01", "E", 1)]
         [InlineData(" E0123", "E", 123)]
         [InlineData("E01000", "E", 1000)]
+        [InlineData("IC12", "IC", 12)]
         public void StringSplitSuccessfully(string input, string expectedName, int expectedNumber)
         {
             var actual = input.SplitNameAndNumber();
