@@ -1,33 +1,29 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace ElectrodeListSimplifier.Library.Extensions
 {
-    public static class ListStringExtensions
+    public static class ElectrodeListExtensions
     {
-        public static string ToSimplifiedString(this List<string> input)
+        public static string ToSimplifiedString(this IList<Electrode> input)
         {
             var result = new List<string>();
             var dictionary = new Dictionary<string, SortedSet<int>>();
 
             foreach (var item in input)
             {
-                (string name, int number) = item.SplitNameAndNumber();
-
-                if (dictionary.ContainsKey(name))
+                if (dictionary.ContainsKey(item.Name))
                 {
-                    dictionary[name].Add(number);
+                    dictionary[item.Name].Add(item.Number);
                     continue;
                 }
 
                 var set = new SortedSet<int>
                 {
-                    number
+                    item.Number
                 };
 
-                dictionary.Add(name, set);
+                dictionary.Add(item.Name, set);
             }
 
             foreach (KeyValuePair<string, SortedSet<int>> pair in dictionary)

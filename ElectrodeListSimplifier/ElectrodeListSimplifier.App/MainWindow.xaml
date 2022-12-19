@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="250" Width="400">
     <Grid>
-        <TextBox x:Name="InputTextBox" Text="Enter electrodes, separated by comma:" TextWrapping="Wrap" Margin="10,10,105,181"/>
+        <TextBox x:Name="InputTextBox" Text="Enter electrodes, separated by comma:" TextWrapping="Wrap" Margin="10,10,105,181" MouseLeftButtonDown="InputTextBox_MouseLeftButtonDown" GotFocus="InputTextBox_GotFocus" Grid.RowSpan="2"/>
         <Button x:Name="SimplifyButton" Content="Simplify" Margin="300,10,10,181" Click="SimplifyButton_Click"/>
-        <TextBox x:Name="ResultTextBox" Text="TextBox" TextWrapping="Wrap" Margin="10,58,10,133"/>
+        <TextBox x:Name="ResultTextBox" Text="" TextWrapping="Wrap" Margin="10,58,10,133" IsReadOnly="True"/>
 
 
     </Grid>

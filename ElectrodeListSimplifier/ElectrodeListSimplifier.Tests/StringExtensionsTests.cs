@@ -16,11 +16,11 @@ namespace ElectrodeListSimplifier.Tests
         [InlineData(" E0123", "E", 123)]
         [InlineData("E01000", "E", 1000)]
         [InlineData("IC12", "IC", 12)]
-        public void StringSplitSuccessfully(string input, string expectedName, int expectedNumber)
+        public void ToElectrodeSuccessfully(string input, string expectedName, int expectedNumber)
         {
-            var actual = input.SplitNameAndNumber();
-            Assert.Equal(expectedName, actual.Item1);
-            Assert.Equal(expectedNumber, actual.Item2);
+            var actual = input.ToElectode();
+            Assert.Equal(expectedName, actual.Name);
+            Assert.Equal(expectedNumber, actual.Number);
         }
 
 
@@ -29,9 +29,9 @@ namespace ElectrodeListSimplifier.Tests
         [InlineData("E")]
         [InlineData("E1E")]
         [InlineData("E11E1E")]
-        public void StringSplitThrowsFormatException(string input)
+        public void ToElectrodeThrowsFormatException(string input)
         {
-            var exception = Assert.Throws<ElectrodeNameFormatException>(() => { var actual = input.SplitNameAndNumber(); });
+            var exception = Assert.Throws<ElectrodeNameFormatException>(() => { var actual = input.ToElectode(); });
             Assert.Contains(input, exception.UserMessage);
         }
 
@@ -39,7 +39,7 @@ namespace ElectrodeListSimplifier.Tests
         [InlineData(null)]
         public void StringSplitThrowsArgumentNullException(string input)
         {
-            Assert.Throws<ArgumentNullException>(() => { var actual = input.SplitNameAndNumber(); });
+            Assert.Throws<ArgumentNullException>(() => { var actual = input.ToElectode(); });
         }
     }
 }
