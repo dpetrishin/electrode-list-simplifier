@@ -1,4 +1,4 @@
-using ElectrodeListSimplifier.Library;
+using ElectrodeListSimplifier.Library.Extensions;
 using ElectrodeListSimplifier.Library.Exceptions;
 using System;
 using Xunit;

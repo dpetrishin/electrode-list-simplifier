@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace ElectrodeListSimplifier.Library
+namespace ElectrodeListSimplifier.Library.Extensions
 {
     public static class ListStringExtensions
     {

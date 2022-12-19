@@ -1,8 +1,5 @@
-﻿using ElectrodeListSimplifier.Library;
-using System;
-using System.Collections.Generic;
+﻿using ElectrodeListSimplifier.Library.Extensions;
 using System.Linq;
-using System.Text;
 using Xunit;
 
 namespace ElectrodeListSimplifier.Tests

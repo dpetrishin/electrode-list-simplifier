@@ -1,7 +1,7 @@
 ﻿using ElectrodeListSimplifier.Library.Exceptions;
 using System;
 
-namespace ElectrodeListSimplifier.Library
+namespace ElectrodeListSimplifier.Library.Extensions
 {
     public static class StringExtensions
     {
