@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ElectrodeListSimplifier.Library.Exceptions;
+using System;
 
 namespace ElectrodeListSimplifier.Library
 {
@@ -14,23 +15,26 @@ namespace ElectrodeListSimplifier.Library
         {
             if (input == null)
             {
-                throw new ArgumentException();
+                throw new ArgumentNullException();
             }
-            else if (input.Length < 1)
-            {
-                throw new ArgumentException();
-            }
-            //else if (input[0].)
-            //{
 
-            //}
+            input = input.Trim();
+            if (input.Length < 2 || !char.IsLetter(input[0]))
+            {
+                throw new ElectrodeNameFormatException(input);
+            }
+
             string name = string.Empty;
             string number = string.Empty;
             foreach (char item in input)
             {
-                if (!char.IsDigit(item))
+                if (!char.IsDigit(item) && string.IsNullOrEmpty(number))
                 {
                     name += item;
+                }
+                else if (!char.IsDigit(item) && !string.IsNullOrEmpty(number))
+                {
+                    throw new ElectrodeNameFormatException(input);
                 }
                 else
                 {
@@ -38,7 +42,7 @@ namespace ElectrodeListSimplifier.Library
                 }
             }
 
-            return new Tuple<string, int>(name.Trim(), int.Parse(number));
+            return new Tuple<string, int>(name, int.Parse(number));
         }
     }
 }
