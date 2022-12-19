@@ -14,7 +14,7 @@ Also, the actual logic code in `.ToSimplifiedString()` looks a bit messy, I unde
 - Also, plus some complexity to fill in the SortedSet before the actual execution, M * O(log(M)) 
 - Also, plus splitting the names and numbers of Electodes before the actual execution = O(L), where L - amount of symbols in string
 
-So, Instead of breaking a head for the most visually great version I've decided to spend more time on proper testing with unit tests.
+Furthermore, instead of breaking a head for the most visually great version I've decided to spend more time on proper testing with unit tests.
 
 But I hope you're not gonna judge too heavy as I had 1 minute notice and no choice. 😃
 
